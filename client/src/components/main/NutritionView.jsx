@@ -16,7 +16,7 @@ class Nutrition extends React.Component {
     const { recipe } = this.props;
     return (
       <div className="selected-nutrition">
-        <Paper style={{ maxHeight: 300, overflow: 'auto' }}>
+        <Paper style={{ maxHeight: 500, overflow: 'auto', width: 560 }}>
           <b>Total Calories: </b>
           This is where total calories go?
           <br />
@@ -51,6 +51,8 @@ class Nutrition extends React.Component {
           More and more and more
           and more and more
           and more and more
+
+
         </Paper>
 
       </div>

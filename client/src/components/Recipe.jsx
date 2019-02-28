@@ -18,10 +18,8 @@ const Recipe = ({ selectedRecipe }) => {
             </td>
           </tr>
           <tr>
-            <td>
-              <Nutrition />
-              </td>
-              </tr>
+            <Nutrition />
+          </tr>
         </tbody>
       </table>
     </div>
