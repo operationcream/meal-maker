@@ -11,15 +11,15 @@ body {
   margin: 0px;
   color: #292929;
   /* background-color: #F3F3F3; */
-  background-image: url('../src/images/backgroundlight.jpg')
+  /* background-image: url('../src/images/backgroundlight.jpg') */
 }
 
 .background {
-  /* background-image: url('../images/white-kitchen.jpg'); */
-  /* background-repeat: no-repeat;
+  background-image: url('../images/white-kitchen.jpg'); 
+  background-repeat: no-repeat;
   height: 500px; 
   background-position: center;
-  background-size: cover; */
+  background-size: cover;
 }
 
 .mealMaker {

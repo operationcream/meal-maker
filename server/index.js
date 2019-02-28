@@ -17,7 +17,7 @@ const helper = require('../helpers/apiHelpers');
 const db = require('../helpers/dbHelpers');
 
 // Configure isProduction variable
-const isProduction = process.env.NODE_ENV === 'production';
+// const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 app.use(require('../routes'));
 
-if (!isProduction) {
+if (true) {
   app.use(errorHandler());
 }
 
