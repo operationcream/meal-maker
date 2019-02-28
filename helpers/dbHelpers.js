@@ -169,7 +169,7 @@ const selectAllIngredients = (callback) => {
 };
 
 const selectAllUsers = (callback) => {
-  connection.query('SELECT * FROM Users', (err, users) => {
+  connection.query('SELECT * FROM users', (err, users) => {
     if (err) {
       callback(err, null)
     } else {
