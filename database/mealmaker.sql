@@ -5,9 +5,10 @@ CREATE DATABASE mealmaker;
 -- DROP TABLE IF EXISTS Users;
 
 USE mealmaker;
-        
+        INSERT INTO users (username, password, salt, loggedIn)
+        VALUES ("dave", "mealmaker", "salt", )
 -- USERS table to hold id, username, and hashed password
-CREATE TABLE Users (
+CREATE TABLE users (
   id INTEGER AUTO_INCREMENT NOT NULL,
   username VARCHAR(50) NOT NULL,
   password TEXT(4294967295) NOT NULL,
@@ -18,7 +19,7 @@ CREATE TABLE Users (
 
 -- 
 -- RECIPES TABLE that holds the recipe name and ID for query 
-CREATE TABLE Recipes (
+CREATE TABLE recipes (
   id INTEGER AUTO_INCREMENT NOT NULL,
   recipe TEXT NOT NULL,
   idRecipieFoodNutrition INTEGER NOT NULL,
@@ -27,14 +28,14 @@ CREATE TABLE Recipes (
 );
 -- ---
 -- INGREDIENTS TABLE populated to auto complete query by user
-CREATE TABLE Ingredient (
+CREATE TABLE ingredient (
   id INTEGER AUTO_INCREMENT NOT NULL,
   ingredient VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );
 -- ---
 -- Dislikes table, holds user's disliked recipes 
-CREATE TABLE Dislikes (
+CREATE TABLE dislikes (
   id INTEGER AUTO_INCREMENT NOT NULL,
   idUsers INTEGER NOT NULL,
   idRecipes TEXT NOT NULL,
@@ -42,16 +43,17 @@ CREATE TABLE Dislikes (
 );
 -- ---
 -- Saved recipes, holds user's id and id recipe      
-CREATE TABLE Saved (
+CREATE TABLE saved (
   id INTEGER AUTO_INCREMENT NOT NULL,
   idUsers INTEGER NOT NULL,
   idRecipes INTEGER NOT NULL,
   PRIMARY KEY (id)
 );
 -- ---
-
+-- INSERT INTO recipeOfTheDay (name, link, instructions, idRecipe, recipeImageLink, cookTime, date) 
+-- VALUES ("Quick Pepperoni Calzones", "gF5STeRxX7Q", "Preheat oven to 350\nIn a small bowl, mix pepperoni, pasta sauce and mozzarella cheese.\nOn a lightly floured surface, divide dough into four portions.\nRoll each into a 6-in. circle; top each with a scant 1/3 cup pepperoni mixture. Fold dough over filling; pinch edges to seal.\nPlace on a greased baking sheet.\nBrush milk over tops; sprinkle with Parmesan cheese and, if desired, Italian seasoning.\nBake 20-25 minutes or until golden brown.", 995521, "https://i.ytimg.com/vi/gF5STeRxX7Q/hqdefault.jpg", 30, 19);
 -- RECIPE OF THE DAY, holds recipes so there are no repeats for recipe of the day
-CREATE TABLE RecipeOfTheDay (
+CREATE TABLE recipeOfTheDay (
   id INTEGER AUTO_INCREMENT NOT NULL,
   name VARCHAR(255) NOT NULL,
   link VARCHAR(255) NOT NULL,
