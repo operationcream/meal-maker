@@ -1,7 +1,7 @@
 // component with a list of instructions for the recipe of the day which can be scrolled
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import Nutrition from './NutritionView.jsx';
+
 
 class RecipeInstructions extends React.Component {
   constructor(props) {
@@ -48,7 +48,6 @@ class RecipeInstructions extends React.Component {
             {steps.map(step => <li key={step}>{step}</li>)}
           </ul>
         </Paper>
-        <Nutrition></Nutrition>
       </div>
     );
   }

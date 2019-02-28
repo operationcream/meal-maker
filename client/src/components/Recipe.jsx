@@ -3,6 +3,7 @@
 import React from 'react';
 import RecipeInstructions from './login/RecipeInstructions.jsx';
 import VideoPlayer from './VideoPlayer.jsx';
+import Nutrition from './main/NutritionView.jsx';
 
 
 const Recipe = ({ selectedRecipe }) => {
@@ -16,6 +17,11 @@ const Recipe = ({ selectedRecipe }) => {
               <RecipeInstructions recipe={selectedRecipe} />
             </td>
           </tr>
+          <tr>
+            <td>
+              <Nutrition />
+              </td>
+              </tr>
         </tbody>
       </table>
     </div>
