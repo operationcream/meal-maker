@@ -29,7 +29,6 @@ class AutoComplete extends React.Component {
 
 
   addIngredient(ingredient) {
-
     const { selectedIngredients } = this.state;
     selectedIngredients.push(ingredient);
     this.setState({
@@ -70,7 +69,7 @@ class AutoComplete extends React.Component {
     return (
       <div className="AutoCompleteComponent">
         <div className="auto-complete">
-          <input value={text} onChange={this.onTextChange} type="text" placeholder=" What's in your fridge?" />
+          <input value={text} onChange={this.onTextChange} type="text" />
           {this.renderSuggestions()}
           <ul>
             {selectedIngredients.map(ingredient => (

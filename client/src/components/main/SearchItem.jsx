@@ -25,21 +25,17 @@ const StyledButtonSave = withStyles({
   },
 })(Button);
 
-const styles = theme => ({
+const styles = {
   form: {
     display: 'flex',
     // flexDirection: 'column',
     margin: 'auto',
     width: 'fit-content',
   },
-  formControl: {
-    marginTop: theme.spacing.unit * 2,
-    minWidth: 200,
+  card: {
+    minWidth: 500,
   },
-  // formControlLabel: {
-  //   marginTop: theme.spacing.unit,
-  // },
-});
+};
 
 const SearchItem = ({
   classes,
@@ -66,7 +62,7 @@ const SearchItem = ({
                     title="Contemplative Reptile"
                   />
                   <CardContent>
-                    Search Card
+                    Search Ingredients
                     <AutoComplete ingredients={ingredients} addIngredient={addIngredient} getRecipes={getRecipes} />
                     {/* <RecipeList recipes={recipes} saveRecipe={saveRecipe} saveDislikeRecipe={saveDislikeRecipe} selectRecipe={selectRecipe} changeView={changeView} /> */}
                   </CardContent>
