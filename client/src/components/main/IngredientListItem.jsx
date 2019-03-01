@@ -6,10 +6,11 @@ const state = {
   checkedB: true,
   checkedF: true,
 };
-const handleChange = name => (event) => {
+let handleChange = name => (event) => {
   this.setState({ [name]: event.target.checked });
 };
 
+handleChange = handleChange.bind(this);
 const IngredientListItem = ({ ingredient }) => (
   <div>
     <Checkbox
