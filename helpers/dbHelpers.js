@@ -80,7 +80,7 @@ const selectAllRecipeOfTheDay = (callback) => {
     } else {
       callback(null, recipes);
     }
-  })
+  });
 };
 
 const saveRecipeOfTheDay = (revcipeName, videoLink, recipeInstructions, ourDbRecipeId, cooktime, recipeImageLink, currentDate) => {
@@ -189,7 +189,7 @@ const saveUser = (username, password, loggedin, callback) => {
     if (previousInstance === 0) {
       return connection.query('INSERT INTO users (username, password, salt, loggedIn) VALUES (?, ?, ?, ?)', q, (err) => {
         if (err) {
-          console.log('could not insert new user into Users table');
+          console.log('could not insert new user into users table');
           callback(err);
         } else {
           return selectAllUsers((err, users) => {

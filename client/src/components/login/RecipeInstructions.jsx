@@ -2,6 +2,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 
+
 class RecipeInstructions extends React.Component {
   constructor(props) {
     super(props);

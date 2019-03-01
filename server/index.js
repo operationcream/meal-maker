@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 app.use(require('../routes'));
 
-if (!isProduction) {
+if (true) {
   app.use(errorHandler());
 }
 
@@ -184,9 +184,14 @@ app.post('/random', (req, res) => {
 app.get('/recipeoftheday', (req, res) => {
   db.selectAllRecipeOfTheDay((err, oldRecipeOfTheDays) => {
     if (oldRecipeOfTheDays[oldRecipeOfTheDays.length - 1].date !== new Date().getDate()) {
-      axios.post('/random').then((res) => {
-        res.status(204).send(res.data);
-      });
+      axios.post('/random')
+        .then((res) => {
+          res.status(204).send(res.data);
+        })
+        .catch((error) => {
+          console.log(error, "ERRRRORRRRRRRRRRRR cant get old recipes");
+          res.status(500).send('cant get oldrecipes');
+        });
     } else {
       const recipeOfTheDay = oldRecipeOfTheDays[oldRecipeOfTheDays.length - 1];
       db.getRecipeIngredients(recipeOfTheDay.idRecipe, (error, ingredients) => {
