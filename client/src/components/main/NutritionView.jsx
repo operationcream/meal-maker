@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {
-  Paper, Card, withStyles, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Table,
+  Card, withStyles, CardContent, Typography,
 } from '@material-ui/core';
 
 const styles = {
@@ -22,8 +22,13 @@ const styles = {
   },
 };
 
-const Nutrition = ({ savedRecipe, classes }) => (
-  <Card className={classes.card}>
+const Nutrition = ({ selectedRecipe, classes }) => {
+  const ingredients = {};
+  ingredients.name = selectedRecipe.singleIngredient[1].name;
+  ingredients.amount = selectedRecipe.singleIngredient[1].amount.us.amount;
+  ingredients.unit = selectedRecipe.singleIngredient[1].amount.us.unitShort;
+  return (
+    <Card className={classes.card}>
     <CardContent>
       <Typography variant="h5" component="h2">
         <tr>
@@ -42,7 +47,7 @@ const Nutrition = ({ savedRecipe, classes }) => (
           </td>
           <td />
           <td>
-          12g
+            {ingredients.amount}
           </td>
         </tr>
       </Typography>
@@ -106,6 +111,7 @@ const Nutrition = ({ savedRecipe, classes }) => (
       </Typography>
     </CardContent>
   </Card>
-);
+  );
+};
 
 export default withStyles(styles)(Nutrition);
