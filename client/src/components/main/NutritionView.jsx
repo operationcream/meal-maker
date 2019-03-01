@@ -1,63 +1,117 @@
 // Nutritional Information for the recipe
 
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
+import {
+  Card, withStyles, CardContent, Typography,
+} from '@material-ui/core';
 
-class Nutrition extends React.Component {
-  constructor(props) {
-    super(props);
-    const { recipe } = this.props;
-    this.state = {
-      currentVideo: recipe,
-    };
-  }
+const styles = {
+  card: {
+    minWidth: 500,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
 
-  render() {
-    const { recipe } = this.props;
-    return (
-      <div className="selected-nutrition">
-        <Paper style={{ maxHeight: 500, overflow: 'auto', width: 560 }}>
-          <b>Total Calories: </b>
-          This is where total calories go?
-          <br />
-          <b>Fat: </b>
-          Maybe where Fat Goes
-          <br />
-          <br />
-          <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-          <br />
-          <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-           <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-          <br />
-          <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-           <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-          <br />
-          <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
+const Nutrition = ({ selectedRecipe, classes }) => {
+  const ingredients = {};
+  ingredients.name = selectedRecipe.singleIngredient[1].name;
+  ingredients.amount = selectedRecipe.singleIngredient[1].amount.us.amount;
+  ingredients.unit = selectedRecipe.singleIngredient[1].amount.us.unitShort;
+  return (
+    <Card className={classes.card}>
+    <CardContent>
+      <Typography variant="h5" component="h2">
+        <tr>
+          <td>
+            Total Calories:
+          </td>
+          <td>
+              500
+          </td>
+        </tr>
+      </Typography>
+      <Typography variant="h6">
+        <tr>
+          <td>
+            Protien:
+          </td>
+          <td />
+          <td>
+            {ingredients.amount}
+          </td>
+        </tr>
+      </Typography>
+      <Typography variant="h6">
+        <tr>
+          <td>
+            Total Fat:
+          </td>
+          <td />
+          <td>
+           9g
+          </td>
+        </tr>
+      </Typography>
+      <Typography>
+        <tr>
+          <td />
+          <td>
+            Sat Fat:
+          </td>
+          <td />
+          <td>
+           2g
+          </td>
+        </tr>
+      </Typography>
+      <Typography variant="h6">
+        <tr>
+          <td>
+            Carbs:
+          </td>
+          <td />
+          <td>
+            15g
+          </td>
+        </tr>
+      </Typography>
+      <Typography>
+        <tr>
+          <td />
+          <td>
+            Sugar:
+          </td>
+          <td />
+          <td>
+            5g
+          </td>
+        </tr>
+      </Typography>
+      <Typography>
+        <tr>
+          <td />
+          <td>
+            Fiber:
+          </td>
+          <td />
+          <td>
+            7g
+          </td>
+        </tr>
+      </Typography>
+    </CardContent>
+  </Card>
+  );
+};
 
-
-        </Paper>
-
-      </div>
-    );
-  }
-}
-
-export default Nutrition;
+export default withStyles(styles)(Nutrition);
