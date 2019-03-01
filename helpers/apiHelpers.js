@@ -150,6 +150,13 @@ const rfnSingleRecipe = (recipeId, callback) => {
     recipeInfo.ingredients = _.map(recipe.data.extendedIngredients, (ingredient) => {
       return ingredient.originalString;
     });
+    recipeInfo.singleIngredient = _.map(recipe.data.extendedIngredients, (ingredient) => {
+      return {
+        id: ingredient.id,
+        name: ingredient.name,
+        amount: ingredient.measures,
+      };
+    });
     // get recipe video and return the recipe info
     youTubeApi(`cook ${recipeInfo.name}`, (youtubeError, video) => {
       if (youtubeError) {
@@ -157,6 +164,7 @@ const rfnSingleRecipe = (recipeId, callback) => {
       }
       recipeInfo.link = video.id.videoId;
       return callback(null, recipeInfo);
+    
     });
   }).catch((err) => {
     callback(err, null);
