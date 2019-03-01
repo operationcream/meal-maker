@@ -1,8 +1,23 @@
 import React from 'react';
-// import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
 
-const IngredientListItem = ({ingredient}) => (
+const state = {
+  checkedA: true,
+  checkedB: true,
+  checkedF: true,
+};
+const handleChange = name => (event) => {
+  this.setState({ [name]: event.target.checked });
+};
+
+const IngredientListItem = ({ ingredient }) => (
   <div>
+    <Checkbox
+      checked={state.checkedA}
+      onChange={handleChange('checkedA')}
+      value="checkedA"
+      color="primary"
+    />
     {ingredient.name}
   </div>
 );
