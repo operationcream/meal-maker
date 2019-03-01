@@ -14,6 +14,7 @@ class AutoComplete extends React.Component {
     this.onTextChange = this.onTextChange.bind(this);
     this.suggestionSelected = this.suggestionSelected.bind(this);
     this.addIngredient = this.addIngredient.bind(this);
+    this.removeIngredient = this.removeIngredient.bind(this);
   }
 
   onTextChange(e) {
@@ -31,6 +32,18 @@ class AutoComplete extends React.Component {
   addIngredient(ingredient) {
     const { selectedIngredients } = this.state;
     selectedIngredients.push(ingredient);
+    this.setState({
+      selectedIngredients,
+      text: '',
+    });
+  }
+
+  removeIngredient(ingredient) {
+    const { selectedIngredients } = this.state;
+    const ingredientIndex = selectedIngredients.indexOf(ingredient.ingredient);
+    if (ingredientIndex !== -1) {
+      selectedIngredients.splice(ingredientIndex, 1);
+    }
     this.setState({
       selectedIngredients,
       text: '',
@@ -73,16 +86,16 @@ class AutoComplete extends React.Component {
         <div className="auto-complete">
           <input value={text} onChange={this.onTextChange} type="text" />
           {this.renderSuggestions()}
-          <ul>
-            {selectedIngredients.map(ingredient => (
-              <li key={ingredient}>
-                {ingredient}
-              </li>
-            ))}
-          </ul>
         </div>
-        <div className="buttons">
-          {/* <Button className="search" variant="outlined" color="primary" type="button" onClick={() => getRecipes(selectedIngredients.join(', '))}>Search</Button> */}
+        <div>
+          {selectedIngredients.map(ingredient => (
+            <div key={ingredient}>
+              {ingredient}
+              {/* <div className="buttons"> */}
+                <Button variant="outlined" type="button" onClick={() => this.removeIngredient({ingredient})}>remove</Button>
+              {/* </div> */}
+            </div>
+          ))}
         </div>
       </div>
     );
