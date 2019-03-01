@@ -3,6 +3,7 @@
 // a percentage match
 // ingredients
 import React from 'react';
+import IngredientList from './IngredientList.jsx';
 
 const SavedRecipeListItem = ({ savedRecipe, changeView, selectRecipe }) => (
   <div>
@@ -31,6 +32,7 @@ const SavedRecipeListItem = ({ savedRecipe, changeView, selectRecipe }) => (
               {savedRecipe.cookTime}
               {' '}
               minutes
+              <IngredientList savedRecipe={savedRecipe} />
             </div>
           </td>
         </tr>
