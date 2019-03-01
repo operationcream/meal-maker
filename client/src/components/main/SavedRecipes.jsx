@@ -7,7 +7,7 @@ import IngredientList from './IngredientList.jsx';
 const SavedRecipes = ({ savedRecipes, changeView, selectRecipe }) => (
 
   <div className="saved-recipes-container">
-    <h1>Your saved recipes</h1>
+    <div className="Lobster"><h2>Your saved recipes</h2></div>
     <div>
       <SavedRecipesList savedRecipes={savedRecipes} changeView={changeView} selectRecipe={selectRecipe} />
     </div>
