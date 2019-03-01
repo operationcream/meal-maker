@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 app.use(require('../routes'));
 
-if (!isProduction) {
+if (true) {
   app.use(errorHandler());
 }
 
@@ -357,7 +357,7 @@ app.post('/toBeSavedDislike', (req, res) => {
 });
 
 // Able to set port and still work //
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 80;
 
 // Listen and console log current port //
 app.listen(port, () => {

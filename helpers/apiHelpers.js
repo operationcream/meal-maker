@@ -91,8 +91,7 @@ const rfnRandomRecipe = (callback) => {
   axios({
     method: 'get',
     headers: {
-      'X-RapidAPI-Key': process.env.RECIPE_FOOD_NUTRITION_API_KEY
-      ,
+      'X-RapidAPI-Key': process.env.RECIPE_FOOD_NUTRITION_API_KEY,
     },
     url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1&limitLicense=false',
   }).then((recipe) => {
@@ -126,7 +125,7 @@ const rfnRandomRecipe = (callback) => {
     });
   }).catch((err) => {
     callback(err, null);
-  })
+  });
 };
 
 const rfnSingleRecipe = (recipeId, callback) => {
