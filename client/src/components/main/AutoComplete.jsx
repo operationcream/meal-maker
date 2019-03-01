@@ -51,7 +51,9 @@ class AutoComplete extends React.Component {
       return null;
     }
     return (
-      <ul className="auto-ulist">
+      <ul className="auto-ulist"
+      // style={{ position: 'absolute' }}
+      >
         {suggestions.map(ingredient => (
           <li 
             className="auto-list" 
