@@ -18,7 +18,7 @@ const Recipe = ({ selectedRecipe }) => {
             </td>
           </tr>
           <tr>
-            <Nutrition />
+            <Nutrition selectedRecipe={selectedRecipe} />
           </tr>
         </tbody>
       </table>
