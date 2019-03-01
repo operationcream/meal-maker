@@ -3,6 +3,7 @@
 // a percentage match
 // ingredients
 import React from 'react';
+import { Typography } from '@material-ui/core';
 import IngredientList from './IngredientList.jsx';
 
 
@@ -23,18 +24,26 @@ const SavedRecipeListItem = ({ savedRecipe, changeView, selectRecipe }) => (
               }}
               role="presentation"
             >
-              <b>
+              <Typography gutterBottom variant="h5" component="h2">
                 {savedRecipe.name}
-              </b>
+              </Typography>
             </div>
-            <div className="cookTime">
-            Cook Time:
+            <Typography gutterBottom variant="subtitle1" component="h4">
+              Cook Time:
               {' '}
               {savedRecipe.cookTime}
               {' '}
               minutes
-              <IngredientList savedRecipe={savedRecipe.singleIngredient} />
-            </div>
+            </Typography>
+
+            {/* <div className="cookTime">
+            Cook Time:
+              {' '}
+              {savedRecipe.cookTime}
+              {' '}
+              minutes */}
+            <IngredientList savedRecipe={savedRecipe.singleIngredient} />
+            {/* </div> */}
           </td>
         </tr>
       </tbody>
