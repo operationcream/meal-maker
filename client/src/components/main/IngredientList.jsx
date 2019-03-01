@@ -24,34 +24,22 @@ const styles = {
 
 const IngredientList = ({ savedRecipe, classes }) => (
   <Card className={classes.card}>
-    <CardActionArea>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
+    <CardContent>
+      <Typography gutterBottom variant="h5" component="h2">
           Ingredients
-        </Typography>
-        <Typography component="p">
-          {savedRecipe.map(ingredient => (
-            <IngredientListItem key={ingredient.id} ingredient={ingredient} />
-          ))}
-        </Typography>
-      </CardContent>
-    </CardActionArea>
+      </Typography>
+      <Typography component="p">
+        {savedRecipe.map(ingredient => (
+          <IngredientListItem key={ingredient.id} ingredient={ingredient} />
+        ))}
+      </Typography>
+    </CardContent>
     <CardActions>
       <Button size="small" color="primary">
         Add to Grocery List!
       </Button>
     </CardActions>
   </Card>
-
-
-  // <div>
-  //   <h2>ingredient list</h2>
-  //   <Card>
-  //     {savedRecipe.map(ingredient => (
-  //       <IngredientListItem key={ingredient.id} ingredient={ingredient} />
-  //     ))}
-  //   </Card>
-  // </div>
 );
 // export default IngredientList;
 export default withStyles(styles)(IngredientList);
