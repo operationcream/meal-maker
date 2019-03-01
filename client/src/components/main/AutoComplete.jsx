@@ -80,7 +80,8 @@ class AutoComplete extends React.Component {
 
   render() {
     const { text, selectedIngredients } = this.state;
-    const { getRecipes } = this.props;
+    const { getRecipes, handleSearchClose } = this.props;
+
     return (
       <div className="AutoCompleteComponent">
         <div className="auto-complete">
@@ -97,6 +98,12 @@ class AutoComplete extends React.Component {
               {/* </div> */}
             </div>
           ))}
+        </div>
+        <div>
+          <Button className="search" variant="outlined" color="primary" type="button" onClick={() => {
+            getRecipes(selectedIngredients.join(', '));
+            handleSearchClose();
+          }}>Search</Button>
         </div>
       </div>
     );
