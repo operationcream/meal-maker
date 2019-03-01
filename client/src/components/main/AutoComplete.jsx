@@ -29,7 +29,6 @@ class AutoComplete extends React.Component {
 
 
   addIngredient(ingredient) {
-
     const { selectedIngredients } = this.state;
     selectedIngredients.push(ingredient);
     this.setState({
@@ -52,7 +51,9 @@ class AutoComplete extends React.Component {
       return null;
     }
     return (
-      <ul className="auto-ulist">
+      <ul className="auto-ulist"
+      // style={{ position: 'absolute' }}
+      >
         {suggestions.map(ingredient => (
           <li 
             className="auto-list" 
@@ -70,7 +71,7 @@ class AutoComplete extends React.Component {
     return (
       <div className="AutoCompleteComponent">
         <div className="auto-complete">
-          <input value={text} onChange={this.onTextChange} type="text" placeholder=" What's in your fridge?" />
+          <input value={text} onChange={this.onTextChange} type="text" />
           {this.renderSuggestions()}
           <ul>
             {selectedIngredients.map(ingredient => (
@@ -81,7 +82,7 @@ class AutoComplete extends React.Component {
           </ul>
         </div>
         <div className="buttons">
-          <Button className="search" variant="contained" color="primary" type="button" onClick={() => getRecipes(selectedIngredients.join(', '))}>Search</Button>
+          {/* <Button className="search" variant="outlined" color="primary" type="button" onClick={() => getRecipes(selectedIngredients.join(', '))}>Search</Button> */}
         </div>
       </div>
     );
