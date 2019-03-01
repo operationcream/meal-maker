@@ -12,50 +12,60 @@ class Nutrition extends React.Component {
     };
   }
 
+
   render() {
     const { recipe } = this.props;
     return (
-      <div className="selected-nutrition">
-        <Paper style={{ maxHeight: 500, overflow: 'auto', width: 560 }}>
-          <b>Total Calories: </b>
-          This is where total calories go?
-          <br />
-          <b>Fat: </b>
+      <Paper style={{
+        maxHeight: 500, overflow: 'auto', width: 560,
+      }}
+      >
+        <style>{'table{border:0px solid black;}'}</style>
+        <table>
+          <tr>
+            <b>Total Calories: </b>
+          Did This Actually Change?
+            <br />
+            <style>{'table1{border:3px solid black; padding:1px}'}</style>
+            <table1>
+              <b>Fat: </b>
           Maybe where Fat Goes
-          <br />
-          <br />
-          <b>Other Things I want Formatted Nicely </b>
+              <br />
+            </table1>
+            <br />
+            <style>{'table2{border:1px solid black;}'}</style>
+            <table2>
+              <b>Other Things I want Formatted Nicely </b>
           More and more and more
           and more and more
           and more and more
-          <br />
-          <b>Other Things I want Formatted Nicely </b>
+              <br />
+            </table2>
+            <b>Other Things I want Formatted Nicely </b>
           More and more and more
           and more and more
           and more and more
-           <b>Other Things I want Formatted Nicely </b>
+            <b>Other Things I want Formatted Nicely </b>
           More and more and more
           and more and more
           and more and more
-          <br />
-          <b>Other Things I want Formatted Nicely </b>
+            <br />
+            <b>Other Things I want Formatted Nicely </b>
           More and more and more
           and more and more
           and more and more
-           <b>Other Things I want Formatted Nicely </b>
+            <b>Other Things I want Formatted Nicely </b>
           More and more and more
           and more and more
           and more and more
-          <br />
-          <b>Other Things I want Formatted Nicely </b>
+            <br />
+            <b>Other Things I want Formatted Nicely </b>
           More and more and more
           and more and more
           and more and more
-
-
-        </Paper>
-
-      </div>
+          </tr>
+        </table>
+      </Paper>
     );
   }
 }
