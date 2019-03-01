@@ -103,7 +103,11 @@ class Main extends React.Component {
               />
             )
               : view === 'saved' ? <SavedRecipes savedRecipes={savedRecipes} changeView={this.changeView} selectRecipe={selectRecipe}/>
-              : view === 'searchHistory' ? <SavedSearches changeView={this.changeView} />
+              : view === 'searchHistory' ? <SavedSearches
+              changeView={this.changeView}
+              ingredients={ingredients}
+              getRecipes={getRecipes}
+              />
               :  <Recipe selectedRecipe={selectedRecipe} />
           }
         </div>
