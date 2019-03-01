@@ -20,8 +20,9 @@ class Search extends React.Component {
     return (
       <div>
         <h2 className="Lobster">
-          Welcome, 
-          {user}
+          Welcome,
+          {' '}
+          { user}
         </h2>
         <h2 align="center">Search for a recipe</h2>
         <div className="Search-Comp">
