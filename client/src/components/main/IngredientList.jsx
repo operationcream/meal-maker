@@ -36,7 +36,7 @@ const IngredientList = ({ savedRecipe, classes }) => (
     </CardContent>
     <CardActions>
       <Button size="small" color="primary">
-        Add to Grocery List!
+        Add to Grocery List
       </Button>
     </CardActions>
   </Card>
