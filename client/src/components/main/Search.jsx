@@ -3,7 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,7 +12,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import VideoPlayer from '../VideoPlayer.jsx';
 import RecipeInstructions from '../login/RecipeInstructions.jsx';
 import RecipeList from './RecipeList.jsx';
-import AutoComplete from './AutoComplete.jsx';
+// import AutoComplete from './AutoComplete.jsx';
+import SearchItem from './SearchItem.jsx';
 
 const styles = theme => ({
   form: {
@@ -89,7 +90,8 @@ class Search extends React.Component {
             <DialogContentText>
               What&apos;s in your fridge?
             </DialogContentText>
-            <AutoComplete ingredients={ingredients} addIngredient={this.addIngredient} getRecipes={getRecipes} />
+            {/* <AutoComplete ingredients={ingredients} addIngredient={this.addIngredient} getRecipes={getRecipes} /> */}
+            <SearchItem ingredients={ingredients} addIngredient={this.addIngredient} getRecipes={getRecipes} />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleSearchClose} color="primary">
