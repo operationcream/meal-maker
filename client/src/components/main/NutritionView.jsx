@@ -1,73 +1,111 @@
 // Nutritional Information for the recipe
 
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
+import {
+  Paper, Card, withStyles, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography, Table,
+} from '@material-ui/core';
 
-class Nutrition extends React.Component {
-  constructor(props) {
-    super(props);
-    const { recipe } = this.props;
-    this.state = {
-      currentVideo: recipe,
-    };
-  }
+const styles = {
+  card: {
+    minWidth: 500,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+};
 
+const Nutrition = ({ savedRecipe, classes }) => (
+  <Card className={classes.card}>
+    <CardContent>
+      <Typography variant="h5" component="h2">
+        <tr>
+          <td>
+            Total Calories:
+          </td>
+          <td>
+              500
+          </td>
+        </tr>
+      </Typography>
+      <Typography variant="h6">
+        <tr>
+          <td>
+            Protien:
+          </td>
+          <td />
+          <td>
+          12g
+          </td>
+        </tr>
+      </Typography>
+      <Typography variant="h6">
+        <tr>
+          <td>
+            Total Fat:
+          </td>
+          <td />
+          <td>
+           9g
+          </td>
+        </tr>
+      </Typography>
+      <Typography>
+        <tr>
+          <td />
+          <td>
+            Sat Fat:
+          </td>
+          <td />
+          <td>
+           2g
+          </td>
+        </tr>
+      </Typography>
+      <Typography variant="h6">
+        <tr>
+          <td>
+            Carbs:
+          </td>
+          <td />
+          <td>
+            15g
+          </td>
+        </tr>
+      </Typography>
+      <Typography>
+        <tr>
+          <td />
+          <td>
+            Sugar:
+          </td>
+          <td />
+          <td>
+            5g
+          </td>
+        </tr>
+      </Typography>
+      <Typography>
+        <tr>
+          <td />
+          <td>
+            Fiber:
+          </td>
+          <td />
+          <td>
+            7g
+          </td>
+        </tr>
+      </Typography>
+    </CardContent>
+  </Card>
+);
 
-  render() {
-    const { recipe } = this.props;
-    return (
-      <Paper style={{
-        maxHeight: 500, overflow: 'auto', width: 560,
-      }}
-      >
-        <style>{'table{border:0px solid black;}'}</style>
-        <table>
-          <tr>
-            <b>Total Calories: </b>
-          Did This Actually Change?
-            <br />
-            <style>{'table1{border:3px solid black; padding:1px}'}</style>
-            <table1>
-              <b>Fat: </b>
-          Maybe where Fat Goes
-              <br />
-            </table1>
-            <br />
-            <style>{'table2{border:1px solid black;}'}</style>
-            <table2>
-              <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-              <br />
-            </table2>
-            <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-            <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-            <br />
-            <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-            <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-            <br />
-            <b>Other Things I want Formatted Nicely </b>
-          More and more and more
-          and more and more
-          and more and more
-          </tr>
-        </table>
-      </Paper>
-    );
-  }
-}
-
-export default Nutrition;
+export default withStyles(styles)(Nutrition);
