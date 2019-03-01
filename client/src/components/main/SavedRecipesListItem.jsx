@@ -5,6 +5,7 @@
 import React from 'react';
 import IngredientList from './IngredientList.jsx';
 
+
 const SavedRecipeListItem = ({ savedRecipe, changeView, selectRecipe }) => (
   <div>
     <table>
@@ -32,7 +33,7 @@ const SavedRecipeListItem = ({ savedRecipe, changeView, selectRecipe }) => (
               {savedRecipe.cookTime}
               {' '}
               minutes
-              <IngredientList savedRecipe={savedRecipe} />
+              <IngredientList savedRecipe={savedRecipe.singleIngredient} />
             </div>
           </td>
         </tr>
