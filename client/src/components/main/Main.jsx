@@ -13,6 +13,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import SavedRecipes from './SavedRecipes.jsx';
 import Search from './Search.jsx';
+import SavedSearches from './SavedSearches.jsx';
 import Recipe from '../Recipe.jsx';
 import logo from '../../../images/clearLogo.png';
 
@@ -68,6 +69,19 @@ class Main extends React.Component {
           >
             Saved Recipes
           </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            type="button"
+            className={view === 'searchHistory'
+              ? 'nav-selected'
+              : 'nav-unselected'}
+            onClick={() => {
+              this.changeView('searchHistory');
+            }}
+          >
+            Search History
+          </Button>
           <Button variant="contained" color="primary" type="button">
             Logout
           </Button>
@@ -89,6 +103,7 @@ class Main extends React.Component {
               />
             )
               : view === 'saved' ? <SavedRecipes savedRecipes={savedRecipes} changeView={this.changeView} selectRecipe={selectRecipe}/>
+              : view === 'searchHistory' ? <SavedSearches changeView={this.changeView} />
               :  <Recipe selectedRecipe={selectedRecipe} />
           }
         </div>
