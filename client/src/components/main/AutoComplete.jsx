@@ -17,6 +17,11 @@ class AutoComplete extends React.Component {
     this.removeIngredient = this.removeIngredient.bind(this);
   }
 
+  componentDidMount() {
+    const { searchedIngredients } = this.props;
+    console.log(searchedIngredients, 'searched ingredients component did mount');
+  }
+
   onTextChange(e) {
     const { ingredients } = this.props;
     const { value } = e.target;
