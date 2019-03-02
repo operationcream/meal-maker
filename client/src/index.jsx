@@ -27,6 +27,7 @@ class App extends React.Component {
     this.getRandomRecipe = this.getRandomRecipe.bind(this);
     this.getRecipes = this.getRecipes.bind(this);
     this.getSavedRecipes = this.getSavedRecipes.bind(this);
+    this.getSavedSearches = this.getSavedSearches.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
     this.saveDislikeRecipe = this.saveDislikeRecipe.bind(this);
     this.selectRecipe = this.selectRecipe.bind(this);
@@ -91,6 +92,23 @@ class App extends React.Component {
       })
       .catch((err) => {
         console.log(`there was an error retrieving saved recipes : ${err}`);
+      });
+  }
+
+  getSavedSearches() {
+    const { userId } = this.state;
+    return axios.get('/savedsearches', {
+      params: {
+        userId,
+      },
+    }) // sends get request to server for saved recipes
+      .then((results) => {
+        this.setState({
+          savedSearches: results.data,
+        });
+      })
+      .catch((err) => {
+        console.log(`there was an error retrieving saved searches : ${err}`);
       });
   }
 
@@ -197,7 +215,7 @@ class App extends React.Component {
     const { show } = this.state;
     let mainComponent = 'login';
     const {
-      recipeOfTheDay, selectedRecipe, savedRecipes, recipes, ingredients, userName,
+      recipeOfTheDay, selectedRecipe, savedRecipes, savedSearches, recipes, ingredients, userName,
     } = this.state;
     if (show === 'login') {
       mainComponent = <Login recipe={recipeOfTheDay} signUp={this.signUp} login={this.login} />;
@@ -208,11 +226,13 @@ class App extends React.Component {
           recipeOfTheDay={recipeOfTheDay}
           selectedRecipe={selectedRecipe}
           savedRecipes={savedRecipes}
+          savedSearches={savedSearches}
           ingredients={ingredients}
           getRecipes={this.getRecipes}
           saveRecipe={this.saveRecipe}
           saveDislikeRecipe={this.saveDislikeRecipe}
           getSavedRecipes={this.getSavedRecipes}
+          getSavedSearches={this.getSavedSearches}
           selectRecipe={this.selectRecipe}
           user={userName}
         />
