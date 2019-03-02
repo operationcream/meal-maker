@@ -86,7 +86,7 @@ class Search extends React.Component {
             <DialogContentText>
               What&apos;s in your fridge?
             </DialogContentText>
-            <SearchItem ingredients={ingredients} addIngredient={this.addIngredient} getRecipes={getRecipes} handleSearchClose={this.handleSearchClose} />
+            <SearchItem ingredients={ingredients} addIngredient={this.addIngredient} getRecipes={getRecipes} handleSearchClose={this.handleSearchClose} changeView={changeView} />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleSearchClose} color="primary">
