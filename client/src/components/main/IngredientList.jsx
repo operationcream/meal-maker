@@ -39,11 +39,6 @@ const IngredientList = ({ savedRecipe, classes, onClick, checked }) => (
         ))}
       </Typography>
     </CardContent>
-    <CardActions>
-      <Button size="small" color="primary">
-        Add to Grocery List
-      </Button>
-    </CardActions>
   </Card>
 );
 // export default IngredientList;
