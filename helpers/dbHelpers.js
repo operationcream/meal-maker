@@ -147,6 +147,17 @@ const saveRecipeIngredient = (recipeId, ingredientId) => {
   });
 };
 
+const saveSearchCombo = (userId, ingredients, callback) => {
+  let q = [userId, ingredients];
+  connection.query(`INSERT INTO savedSearches (idUsers, ingredients) VALUES (?, ?)`, q, (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, result);
+    }
+  });
+};
+
 const getRecipeIngredients = (recipeId, callback) => {
   connection.query(`SELECT * FROM recipesIngredients WHERE idRecipe = ${recipeId}`, (err, ingredients) => {
     if (err) {
@@ -266,5 +277,5 @@ const loginUser = (username) => {
 };
 
 module.exports = {
-  selectSingleRecipeById, toAuthJSON, validatePassword, selectSingleRecipeByName, selectAllRecipes, saveRecipe, selectLikedRecipes, saveLikedRecipe, selectAllRecipeOfTheDay, saveRecipeOfTheDay, updateRecipeOfTheDay, selectDislikedRecipes, dislikeRecipe, saveIngredient, saveRecipeIngredient, getRecipeIngredients, selectAllIngredients, selectAllUsers, saveUser, logoutUser, loginUser,
+  selectSingleRecipeById, toAuthJSON, validatePassword, selectSingleRecipeByName, selectAllRecipes, saveRecipe, selectLikedRecipes, saveLikedRecipe, selectAllRecipeOfTheDay, saveRecipeOfTheDay, updateRecipeOfTheDay, selectDislikedRecipes, dislikeRecipe, saveIngredient, saveRecipeIngredient, getRecipeIngredients, selectAllIngredients, selectAllUsers, saveUser, logoutUser, loginUser, saveSearchCombo,
 };

@@ -37,6 +37,12 @@ if (true) {
 
 // get recipies depending upon passed in ingredients //
 app.get('/food', (req, res) => {
+  // console.log(req.query.ingredients);
+  db.saveSearchCombo(req.query.userId, req.query.ingredients, (err, response) => {
+    if (err) {
+      console.log(err);
+    }
+  });
   helper.recFoodNutrApi(req.query.ingredients, (err, recipes) => {
     if (err) {
       console.log(err);
