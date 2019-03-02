@@ -176,10 +176,9 @@ const rfnSingleRecipe = (recipeId, callback) => {
 
     Promise.all(promises).then((resultArray) => {
       const nutrition = resultArray.map((ingredient) => {
-        return ingredient.data;
+        return ingredient.data.nutrition.nutrients;
       });
       recipeInfo.nutrition = nutrition;
-      console.log(resultArray);
       // get recipe video and return the recipe info
       youTubeApi(`cook ${recipeInfo.name}`, (youtubeError, video) => {
         if (youtubeError) {
@@ -193,7 +192,7 @@ const rfnSingleRecipe = (recipeId, callback) => {
     callback(err, null);
   });
 };
-  
+
 const mealDBIngredientSearch = (callback) => {
   // get all ingredients
   return axios({
