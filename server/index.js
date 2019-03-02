@@ -324,6 +324,18 @@ app.get('/savedrecipes', (req, res) => {
   });
 });
 
+// retrieve all saved searches for particular user
+app.get('/savedsearches', (req, res) => {
+  const { userId } = req.query;
+  db.getSearchCombos(userId, (err, results) => {
+    if (err) {
+      res.status(500).send('Something went wrong!');
+    } else {
+      res.status(200).send(results); // send that array back to client
+    }
+  });
+});
+
 // when client wants to save a recipe into DB
 app.post('/toBeSaved', (req, res) => {
   const { userId, recipeId } = req.body;
