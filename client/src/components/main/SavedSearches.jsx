@@ -2,7 +2,7 @@
 import React from 'react';
 import SavedSearchItems from './SavedSearchItems.jsx';
 
-const SavedSearches = ({ ingredients, getRecipes, savedSearches }) => {
+const SavedSearches = ({ ingredients, getRecipes, savedSearches, changeView }) => {
   // make get request here for each search combo
   console.log(savedSearches, 'searches please work');
   return (
@@ -15,6 +15,7 @@ const SavedSearches = ({ ingredients, getRecipes, savedSearches }) => {
               return (
                 <SavedSearchItems
                   key={savedSearch.id}
+                  changeView={changeView}
                   ingredients={ingredients}
                   searchedIngredients={savedSearch.ingredients}
                   getRecipes={getRecipes}

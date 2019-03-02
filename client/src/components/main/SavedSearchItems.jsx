@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import SearchItem from './SearchItem.jsx';
 
-const SavedSearchItems = ({ ingredients, getRecipes, searchedIngredients }) => {
+const SavedSearchItems = ({ ingredients, getRecipes, searchedIngredients, changeView }) => {
   console.log(searchedIngredients, 'searched ingredients');
   return (
     <div>
@@ -10,7 +10,12 @@ const SavedSearchItems = ({ ingredients, getRecipes, searchedIngredients }) => {
         <tbody>
           <tr>
             <td>
-              <SearchItem ingredients={ingredients} getRecipes={getRecipes} searchedIngredients={searchedIngredients} />
+              <SearchItem
+                changeView={changeView}
+                ingredients={ingredients}
+                getRecipes={getRecipes}
+                searchedIngredients={searchedIngredients}
+              />
             </td>
           </tr>
         </tbody>

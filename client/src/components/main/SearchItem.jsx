@@ -44,6 +44,7 @@ const SearchItem = ({
   getRecipes,
   handleSearchClose,
   searchedIngredients,
+  changeView,
 }) => {
   // const { classes } = this.props;
   return (
@@ -66,6 +67,7 @@ const SearchItem = ({
                 <CardContent>
                   Search Ingredients
                   <AutoComplete
+                    changeView={changeView}
                     ingredients={ingredients}
                     addIngredient={addIngredient}
                     getRecipes={getRecipes}

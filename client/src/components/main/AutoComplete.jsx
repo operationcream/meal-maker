@@ -88,7 +88,7 @@ class AutoComplete extends React.Component {
 
   render() {
     const { text, selectedIngredients } = this.state;
-    const { getRecipes, handleSearchClose } = this.props;
+    const { getRecipes, handleSearchClose, changeView } = this.props;
 
     return (
       <div className="AutoCompleteComponent">
@@ -99,9 +99,7 @@ class AutoComplete extends React.Component {
         <div>
           {selectedIngredients.map(ingredient => (
             <div key={ingredient}>
-              {/* <div className="buttons"> */}
-                <Button variant="outlined" type="button" onClick={() => this.removeIngredient({ingredient})}>remove</Button>
-              {/* </div> */}
+              <Button variant="outlined" type="button" onClick={() => this.removeIngredient({ ingredient })}>remove</Button>
               {' '}
               {ingredient}
             </div>
@@ -110,6 +108,7 @@ class AutoComplete extends React.Component {
         <div>
           <Button className="search" variant="outlined" color="primary" type="button" onClick={() => {
             getRecipes(selectedIngredients.join(', '));
+            changeView('search');
             handleSearchClose();
           }}>Search</Button>
         </div>
