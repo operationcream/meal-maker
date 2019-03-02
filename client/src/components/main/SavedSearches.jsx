@@ -9,10 +9,10 @@ const SavedSearches = ({ ingredients, getRecipes, savedSearches }) => {
     <div className="saved-recipes-container">
       <h2 className="Lobster">Your Search History</h2>
       <div>
-        <SavedSearchItems
-          ingredients={ingredients}
-          getRecipes={getRecipes}
-        />
+        <div className="search-list">
+          {savedSearches.map(savedSearch => <SavedSearchItems key={savedSearch.id} ingredients={ingredients} getRecipes={getRecipes} />)
+          }
+        </div>
       </div>
     </div>
   );

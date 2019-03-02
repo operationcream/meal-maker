@@ -16,6 +16,7 @@ class App extends React.Component {
       recipes: [],
       recipeOfTheDay: randomRecipe, // recipe of the day video
       savedRecipes: [],
+      savedSearches: [],
       ingredients: [],
       userId: 0,
       selectedRecipe: randomRecipe,

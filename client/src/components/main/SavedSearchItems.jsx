@@ -2,12 +2,10 @@ import React from 'react';
 import _ from 'lodash';
 import SearchItem from './SearchItem.jsx';
 
-const RecipeListItem = ({ ingredients, getRecipes }) => {
-
+const SavedSearchItems = ({ ingredients, getRecipes }) => {
+  console.log(ingredients, 'searched ingredients');
   return (
-    <div
-      className="recipe-list-item"
-    >
+    <div>
       <table>
         <tbody>
           <tr>
@@ -22,4 +20,4 @@ const RecipeListItem = ({ ingredients, getRecipes }) => {
 };
 
 
-export default RecipeListItem;
+export default SavedSearchItems;
