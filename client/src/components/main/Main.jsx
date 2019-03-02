@@ -29,6 +29,7 @@ class Main extends React.Component {
 
   // function to change between views
   changeView(option) {
+    console.log(option, 'view changed');
     this.setState({
       view: option,
     });
