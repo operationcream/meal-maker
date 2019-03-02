@@ -188,6 +188,9 @@ const mealDBIngredientSearch = (callback) => {
   });
 };
 
+const nutritionApi = (ingredientsList, callback) => {
+
+};
 
 const hasher = password => hash(password);
 
@@ -197,3 +200,4 @@ module.exports.youTubeApi = youTubeApi;
 module.exports.rfnRandomRecipe = rfnRandomRecipe;
 module.exports.hasher = hasher;
 module.exports.rfnSingleRecipe = rfnSingleRecipe;
+module.exports.nutritionApi = nutritionApi;
