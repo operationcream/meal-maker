@@ -101,7 +101,7 @@ class Search extends React.Component {
 
 
         <div className="test">
-          <RecipeList recipes={recipes} saveRecipe={saveRecipe} saveDislikeRecipe={saveDislikeRecipe} selectRecipe={selectRecipe} changeView={changeView} />
+          {/* <RecipeList recipes={recipes} saveRecipe={saveRecipe} saveDislikeRecipe={saveDislikeRecipe} selectRecipe={selectRecipe} changeView={changeView} /> */}
         </div>
         <h3 id="recipeTitle">Recipe of the day</h3>
         <div className="recipe-of-the-day-container">
