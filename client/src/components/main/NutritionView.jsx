@@ -25,8 +25,46 @@ const styles = {
 
 
 const Nutrition = ({ nutrition, classes }) => {
-  const ingredients = {};
-  ingredients.calories = nutrition[0][0].amount;
+  const ing = {};
+  ing.cal = 0;
+  ing.pro = 0;
+  ing.fat = 0;
+  ing.car = 0;
+  ing.sat = 0;
+  ing.sug = 0;
+  // Loop over nutrition array
+  nutrition.forEach((ingredient) => {
+    // Loop over inner array
+    ingredient.forEach((nutrient) => {
+      // See what the nutrients are
+      if (nutrient.title === 'Calories') {
+        ing.cal += nutrient.amount;
+      }
+      if (nutrient.title === 'Protein') {
+        ing.pro += nutrient.amount;
+      }
+      if (nutrient.title === 'Fat') {
+        ing.fat += nutrient.amount;
+      }
+      if (nutrient.title === 'Saturated Fat') {
+        ing.sat += nutrient.amount;
+      }
+      if (nutrient.title === 'Carbohydrates') {
+        ing.car += nutrient.amount;
+      }
+      if (nutrient.title === 'Sugar') {
+        ing.sug += nutrient.amount;
+      }
+    });
+  });
+
+  ing.cal = Math.round(ing.cal);
+  ing.pro = Math.round(ing.pro);
+  ing.fat = Math.round(ing.fat);
+  ing.sat = Math.round(ing.sat);
+  ing.car = Math.round(ing.car);
+  ing.sug = Math.round(ing.sug);
+
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -36,7 +74,7 @@ const Nutrition = ({ nutrition, classes }) => {
             Total Calories:
             </td>
             <td>
-              {ingredients.calories}
+              {ing.cal}
             </td>
           </tr>
         </Typography>
@@ -47,7 +85,8 @@ const Nutrition = ({ nutrition, classes }) => {
             </td>
             <td />
             <td>
-              10g
+              {ing.pro}
+              g
             </td>
           </tr>
         </Typography>
@@ -58,7 +97,8 @@ const Nutrition = ({ nutrition, classes }) => {
             </td>
             <td />
             <td>
-           9g
+              {ing.fat}
+            g
             </td>
           </tr>
         </Typography>
@@ -70,7 +110,8 @@ const Nutrition = ({ nutrition, classes }) => {
             </td>
             <td />
             <td>
-           2g
+              {ing.sat}
+            g
             </td>
           </tr>
         </Typography>
@@ -81,7 +122,8 @@ const Nutrition = ({ nutrition, classes }) => {
             </td>
             <td />
             <td>
-            15g
+              {ing.car}
+            g
             </td>
           </tr>
         </Typography>
@@ -93,19 +135,8 @@ const Nutrition = ({ nutrition, classes }) => {
             </td>
             <td />
             <td>
-            5g
-            </td>
-          </tr>
-        </Typography>
-        <Typography>
-          <tr>
-            <td />
-            <td>
-            Fiber:
-            </td>
-            <td />
-            <td>
-            7g
+              {ing.sug}
+            g
             </td>
           </tr>
         </Typography>
