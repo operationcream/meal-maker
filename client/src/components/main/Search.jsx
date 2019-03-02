@@ -31,19 +31,18 @@ const styles = theme => ({
   // },
 });
 
-// eslint-disable-next-line react/prefer-stateless-function
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
     };
-    this.handleClickSearchOpen = this.handleClickSearchOpen.bind(this);
+    this.handleSearchOpen = this.handleSearchOpen.bind(this);
     this.handleSearchClose = this.handleSearchClose.bind(this);
   }
 
 
-  handleClickSearchOpen() {
+  handleSearchOpen() {
     this.setState({ open: true });
   }
 
@@ -53,18 +52,15 @@ class Search extends React.Component {
 
   render() {
     const {
-      classes,
-      handleClickSearchOpen,
-      handleSearchClose,
       recipeOfTheDay,
       recipes,
       getRecipes,
       ingredients,
       saveRecipe,
-      saveDislikeRecipe, 
-      selectRecipe, 
-      changeView, 
-      user 
+      saveDislikeRecipe,
+      selectRecipe,
+      changeView,
+      user
     } = this.props;
     const {
       open,
@@ -76,12 +72,12 @@ class Search extends React.Component {
           {' '}
           { user }
         </h2>
-        <Button variant="outlined" color="primary" onClick={this.handleClickSearchOpen}>
+        <Button variant="outlined" color="primary" onClick={this.handleSearchOpen}>
           Search Ingredients
         </Button>
         <Dialog
           open={open}
-          onClose={handleSearchClose}
+          onClose={this.handleSearchClose}
           aria-labelledby="form-dialog-title"
           maxWidth="lg"
         >
@@ -90,8 +86,7 @@ class Search extends React.Component {
             <DialogContentText>
               What&apos;s in your fridge?
             </DialogContentText>
-            {/* <AutoComplete ingredients={ingredients} addIngredient={this.addIngredient} getRecipes={getRecipes} /> */}
-            <SearchItem ingredients={ingredients} addIngredient={this.addIngredient} getRecipes={getRecipes} />
+            <SearchItem ingredients={ingredients} addIngredient={this.addIngredient} getRecipes={getRecipes} handleSearchClose={this.handleSearchClose} />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleSearchClose} color="primary">
@@ -100,11 +95,13 @@ class Search extends React.Component {
           </DialogActions>
         </Dialog>
 
-        {/* <RecipeList recipes={recipes} saveRecipe={saveRecipe} saveDislikeRecipe={saveDislikeRecipe} selectRecipe={selectRecipe} changeView={changeView} /> */}
+        <div>
+          <RecipeList recipes={recipes} saveRecipe={saveRecipe} saveDislikeRecipe={saveDislikeRecipe} selectRecipe={selectRecipe} changeView={changeView} />
+        </div>
 
 
         <div className="test">
-          <RecipeList recipes={recipes} saveRecipe={saveRecipe} saveDislikeRecipe={saveDislikeRecipe} selectRecipe={selectRecipe} changeView={changeView} />
+          {/* <RecipeList recipes={recipes} saveRecipe={saveRecipe} saveDislikeRecipe={saveDislikeRecipe} selectRecipe={selectRecipe} changeView={changeView} /> */}
         </div>
         <h3 id="recipeTitle">Recipe of the day</h3>
         <div className="recipe-of-the-day-container">
