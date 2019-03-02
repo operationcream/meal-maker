@@ -19,7 +19,10 @@ class AutoComplete extends React.Component {
 
   componentDidMount() {
     const { searchedIngredients } = this.props;
-    console.log(searchedIngredients, 'searched ingredients component did mount');
+    const savedSearch = searchedIngredients.split(', ');
+    this.setState({
+      selectedIngredients: savedSearch,
+    });
   }
 
   onTextChange(e) {
