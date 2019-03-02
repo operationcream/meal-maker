@@ -39,6 +39,7 @@ class SavedRecipes extends React.Component {
       <div className="saved-recipes-container">
         <div className="Lobster"><h2>Your saved recipes</h2></div>
         <div>
+          <GroceryList savedGroceryList={savedGroceryList} />
           <SavedRecipesList
             onClick={this.onClick}
             savedRecipes={savedRecipes}
@@ -48,7 +49,6 @@ class SavedRecipes extends React.Component {
           />
         </div>
         <div>
-          <GroceryList savedGroceryList={savedGroceryList} />
 
         </div>
       </div>
