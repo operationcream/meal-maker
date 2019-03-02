@@ -99,11 +99,11 @@ class AutoComplete extends React.Component {
         <div>
           {selectedIngredients.map(ingredient => (
             <div key={ingredient}>
-              {ingredient}
-              {' '}
               {/* <div className="buttons"> */}
                 <Button variant="outlined" type="button" onClick={() => this.removeIngredient({ingredient})}>remove</Button>
               {/* </div> */}
+              {' '}
+              {ingredient}
             </div>
           ))}
         </div>

@@ -10,14 +10,18 @@ const SavedSearches = ({ ingredients, getRecipes, savedSearches }) => {
       <h2 className="Lobster">Your Search History</h2>
       <div>
         <div className="search-list">
-          {savedSearches.map(savedSearch => (
-            <SavedSearchItems
-              key={savedSearch.id}
-              ingredients={ingredients}
-              searchedIngredients={savedSearch.ingredients}
-              getRecipes={getRecipes}
-            />
-          ))
+          {savedSearches.map((savedSearch) => {
+            if (savedSearch.ingredients !== '') {
+              return (
+                <SavedSearchItems
+                  key={savedSearch.id}
+                  ingredients={ingredients}
+                  searchedIngredients={savedSearch.ingredients}
+                  getRecipes={getRecipes}
+                />
+              );
+            }
+          })
           }
         </div>
       </div>
