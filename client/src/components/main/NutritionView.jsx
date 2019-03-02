@@ -24,11 +24,9 @@ const styles = {
 };
 
 
-const Nutrition = ({ selectedRecipe, classes }) => {
+const Nutrition = ({ nutrition, classes }) => {
   const ingredients = {};
-  ingredients.name = selectedRecipe.singleIngredient[1].name;
-  ingredients.amount = selectedRecipe.singleIngredient[1].amount.us.amount;
-  ingredients.unit = selectedRecipe.singleIngredient[1].amount.us.unitShort;
+  ingredients.calories = nutrition[0][0].amount;
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -38,7 +36,7 @@ const Nutrition = ({ selectedRecipe, classes }) => {
             Total Calories:
             </td>
             <td>
-              500
+              {ingredients.calories}
             </td>
           </tr>
         </Typography>
@@ -49,7 +47,7 @@ const Nutrition = ({ selectedRecipe, classes }) => {
             </td>
             <td />
             <td>
-              {ingredients.amount}
+              10g
             </td>
           </tr>
         </Typography>
