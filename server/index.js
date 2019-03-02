@@ -37,6 +37,12 @@ if (true) {
 
 // get recipies depending upon passed in ingredients //
 app.get('/food', (req, res) => {
+  // console.log(req.query.ingredients);
+  db.saveSearchCombo(req.query.userId, req.query.ingredients, (err, response) => {
+    if (err) {
+      console.log(err);
+    }
+  });
   helper.recFoodNutrApi(req.query.ingredients, (err, recipes) => {
     if (err) {
       console.log(err);
@@ -314,6 +320,18 @@ app.get('/savedrecipes', (req, res) => {
         }
         console.log(recipesObj);
       }));
+    }
+  });
+});
+
+// retrieve all saved searches for particular user
+app.get('/savedsearches', (req, res) => {
+  const { userId } = req.query;
+  db.getSearchCombos(userId, (err, results) => {
+    if (err) {
+      res.status(500).send('Something went wrong!');
+    } else {
+      res.status(200).send(results); // send that array back to client
     }
   });
 });
