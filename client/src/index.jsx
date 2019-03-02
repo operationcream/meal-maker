@@ -47,6 +47,7 @@ class App extends React.Component {
     }
   }
 
+
   // function to retrieve recipes to display
   getRecipes(ingredients) {
     const { userId } = this.state;
@@ -128,21 +129,6 @@ class App extends React.Component {
 
   // sends a POST request to serve at endpoint '/toBeSaved'
   // eslint-disable-next-line class-methods-use-this
-  saveRecipe(recipe) {
-    const { userId } = this.state;
-    return axios.post('/toBeSaved', {
-      userId,
-      recipeId: recipe.recipeId,
-    })
-      .then((result) => {
-        console.log(result);
-      }).catch((err) => {
-        console.log(err, 'error while trying to save recipe into DB');
-      });
-  }
-
-  // sends a POST request to serve at endpoint '/toBeSaved'
-  // eslint-disable-next-line class-methods-use-this
   saveDislikeRecipe(recipe) {
     const { userId } = this.state;
     return axios.post('/toBeSavedDislike', {
@@ -163,6 +149,35 @@ class App extends React.Component {
     });
   }
 
+  // function to update the nutritional information that will be passed down to all below
+  // setNutritionalInfo({ ingredients }) {
+  //   return axios.get('/nutrition', {
+  //     params: {
+  //       ingredients,
+  //     },
+  //   }).then((nutrition) => {
+  //     this.setState({
+  //       nutritionInformation: nutrition.data,
+  //     }).catch((err) => {
+  //       console.log(`No nutrition for you : ${err}`);
+  //     });
+  //   });
+  // }
+
+  // sends a POST request to serve at endpoint '/toBeSaved'
+  // eslint-disable-next-line class-methods-use-this
+  saveRecipe(recipe) {
+    const { userId } = this.state;
+    return axios.post('/toBeSaved', {
+      userId,
+      recipeId: recipe.recipeId,
+    })
+      .then((result) => {
+        console.log(result);
+      }).catch((err) => {
+        console.log(err, 'error while trying to save recipe into DB');
+      });
+  }
 
   signUp(user, pw) {
     console.log(`thank you for signing up, ${user}`);

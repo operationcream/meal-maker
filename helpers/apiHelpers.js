@@ -157,14 +157,36 @@ const rfnSingleRecipe = (recipeId, callback) => {
         amount: ingredient.measures,
       };
     });
-    // get recipe video and return the recipe info
-    youTubeApi(`cook ${recipeInfo.name}`, (youtubeError, video) => {
-      if (youtubeError) {
-        return callback(youtubeError, null);
-      }
-      recipeInfo.link = video.id.videoId;
-      return callback(null, recipeInfo);
-    
+    // Make API Calls for each of the single ingredients in singleIngredient Array
+    const ingredientQueries = recipeInfo.singleIngredient.map((ingredient) => {
+      const query = {
+        method: 'get',
+        headers: {
+          'X-RapidAPI-Key': process.env.RECIPE_FOOD_NUTRITION_API_KEY,
+        },
+        url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/${ingredient.id}/information?amount=${ingredient.amount.us.amount}&${ingredient.amount.us.unitShort}`,
+      };
+      // Structure the information for API Call //
+      return query;
+    });
+    const promises = ingredientQueries.map((query) => {
+    // Send each query in a get
+      return axios(query);
+    });
+
+    Promise.all(promises).then((resultArray) => {
+      const nutrition = resultArray.map((ingredient) => {
+        return ingredient.data.nutrition.nutrients;
+      });
+      recipeInfo.nutrition = nutrition;
+      // get recipe video and return the recipe info
+      youTubeApi(`cook ${recipeInfo.name}`, (youtubeError, video) => {
+        if (youtubeError) {
+          return callback(youtubeError, null);
+        }
+        recipeInfo.link = video.id.videoId;
+        return callback(null, recipeInfo);
+      });
     });
   }).catch((err) => {
     callback(err, null);
@@ -189,10 +211,6 @@ const mealDBIngredientSearch = (callback) => {
   });
 };
 
-const nutritionApi = (ingredientsList, callback) => {
-
-};
-
 const hasher = password => hash(password);
 
 module.exports.recFoodNutrApi = recFoodNutrApi;
@@ -201,4 +219,3 @@ module.exports.youTubeApi = youTubeApi;
 module.exports.rfnRandomRecipe = rfnRandomRecipe;
 module.exports.hasher = hasher;
 module.exports.rfnSingleRecipe = rfnSingleRecipe;
-module.exports.nutritionApi = nutritionApi;
