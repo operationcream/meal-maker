@@ -17,6 +17,16 @@ class AutoComplete extends React.Component {
     this.removeIngredient = this.removeIngredient.bind(this);
   }
 
+  componentDidMount() {
+    const { searchedIngredients } = this.props;
+    if (searchedIngredients) {
+      const savedSearch = searchedIngredients.split(', ');
+      this.setState({
+        selectedIngredients: savedSearch,
+      });
+    }
+  }
+
   onTextChange(e) {
     const { ingredients } = this.props;
     const { value } = e.target;
@@ -80,7 +90,7 @@ class AutoComplete extends React.Component {
 
   render() {
     const { text, selectedIngredients } = this.state;
-    const { getRecipes, handleSearchClose } = this.props;
+    const { getRecipes, handleSearchClose, changeView } = this.props;
 
     return (
       <div className="AutoCompleteComponent">
@@ -91,17 +101,16 @@ class AutoComplete extends React.Component {
         <div>
           {selectedIngredients.map(ingredient => (
             <div key={ingredient}>
-              {ingredient}
+              <Button variant="outlined" type="button" onClick={() => this.removeIngredient({ ingredient })}>remove</Button>
               {' '}
-              {/* <div className="buttons"> */}
-                <Button variant="outlined" type="button" onClick={() => this.removeIngredient({ingredient})}>remove</Button>
-              {/* </div> */}
+              {ingredient}
             </div>
           ))}
         </div>
         <div>
           <Button className="search" variant="outlined" color="primary" type="button" onClick={() => {
             getRecipes(selectedIngredients.join(', '));
+            changeView('search');
             handleSearchClose();
           }}>Search</Button>
         </div>

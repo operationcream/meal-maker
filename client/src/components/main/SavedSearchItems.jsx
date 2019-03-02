@@ -2,17 +2,20 @@ import React from 'react';
 import _ from 'lodash';
 import SearchItem from './SearchItem.jsx';
 
-const RecipeListItem = ({ ingredients, getRecipes }) => {
-
+const SavedSearchItems = ({ ingredients, getRecipes, searchedIngredients, changeView }) => {
+  console.log(searchedIngredients, 'searched ingredients');
   return (
-    <div
-      className="recipe-list-item"
-    >
+    <div>
       <table>
         <tbody>
           <tr>
             <td>
-              <SearchItem ingredients={ingredients} getRecipes={getRecipes} />
+              <SearchItem
+                changeView={changeView}
+                ingredients={ingredients}
+                getRecipes={getRecipes}
+                searchedIngredients={searchedIngredients}
+              />
             </td>
           </tr>
         </tbody>
@@ -22,4 +25,4 @@ const RecipeListItem = ({ ingredients, getRecipes }) => {
 };
 
 
-export default RecipeListItem;
+export default SavedSearchItems;

@@ -22,7 +22,7 @@ const styles = {
 };
 
 
-const IngredientList = ({ savedRecipe, classes }) => (
+const IngredientList = ({ savedRecipe, classes, onClick, checked }) => (
   <Card className={classes.card}>
     <CardContent>
       <Typography gutterBottom variant="h5" component="h2">
@@ -30,7 +30,12 @@ const IngredientList = ({ savedRecipe, classes }) => (
       </Typography>
       <Typography component="p">
         {savedRecipe.map(ingredient => (
-          <IngredientListItem key={ingredient.id} ingredient={ingredient} />
+          <IngredientListItem 
+          key={ingredient.id} 
+          ingredient={ingredient} 
+          onClick={onClick}
+          checked={checked}
+          />
         ))}
       </Typography>
     </CardContent>

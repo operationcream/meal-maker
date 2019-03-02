@@ -52,6 +52,7 @@ const recFoodNutrApi = (ingredients, callback) => {
         return instruction.step;
       });
       recipeInfo.ingredients = {};
+      recipeInfo.isChecked = false;
       recipeInfo.ingredients.missedIngredients = _.map(recipe.missedIngredients, (ingredient) => {
         return ingredient.originalString;
       });

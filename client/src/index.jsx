@@ -16,6 +16,7 @@ class App extends React.Component {
       recipes: [],
       recipeOfTheDay: randomRecipe, // recipe of the day video
       savedRecipes: [],
+      savedSearches: [],
       ingredients: [],
       userId: 0,
       selectedRecipe: randomRecipe,
@@ -27,6 +28,7 @@ class App extends React.Component {
     this.getRandomRecipe = this.getRandomRecipe.bind(this);
     this.getRecipes = this.getRecipes.bind(this);
     this.getSavedRecipes = this.getSavedRecipes.bind(this);
+    this.getSavedSearches = this.getSavedSearches.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
     this.saveDislikeRecipe = this.saveDislikeRecipe.bind(this);
     this.selectRecipe = this.selectRecipe.bind(this);
@@ -95,6 +97,36 @@ class App extends React.Component {
       });
   }
 
+  getSavedSearches() {
+    const { userId } = this.state;
+    return axios.get('/savedsearches', {
+      params: {
+        userId,
+      },
+    }) // sends get request to server for saved recipes
+      .then((results) => {
+        this.setState({
+          savedSearches: results.data,
+        });
+      })
+      .catch((err) => {
+        console.log(`there was an error retrieving saved searches : ${err}`);
+      });
+  }
+
+  // gets all ingredients saved to db to for autocomplete component
+  grabIngredients() {
+    axios.get('/ingredients')
+      .then((allIngOptions) => {
+        this.setState({
+          ingredients: allIngOptions.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error, 'error in getting all ingredients');
+      });
+  }
+
   // sends a POST request to serve at endpoint '/toBeSaved'
   // eslint-disable-next-line class-methods-use-this
   saveDislikeRecipe(recipe) {
@@ -144,19 +176,6 @@ class App extends React.Component {
         console.log(result);
       }).catch((err) => {
         console.log(err, 'error while trying to save recipe into DB');
-      });
-  }
-
-  // gets all ingredients saved to db to for autocomplete component
-  grabIngredients() {
-    axios.get('/ingredients')
-      .then((allIngOptions) => {
-        this.setState({
-          ingredients: allIngOptions.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error, 'error in getting all ingredients');
       });
   }
 
@@ -212,7 +231,7 @@ class App extends React.Component {
     const { show } = this.state;
     let mainComponent = 'login';
     const {
-      recipeOfTheDay, selectedRecipe, savedRecipes, recipes, ingredients, userName,
+      recipeOfTheDay, selectedRecipe, savedRecipes, savedSearches, recipes, ingredients, userName,
     } = this.state;
     if (show === 'login') {
       mainComponent = <Login recipe={recipeOfTheDay} signUp={this.signUp} login={this.login} />;
@@ -223,11 +242,13 @@ class App extends React.Component {
           recipeOfTheDay={recipeOfTheDay}
           selectedRecipe={selectedRecipe}
           savedRecipes={savedRecipes}
+          savedSearches={savedSearches}
           ingredients={ingredients}
           getRecipes={this.getRecipes}
           saveRecipe={this.saveRecipe}
           saveDislikeRecipe={this.saveDislikeRecipe}
           getSavedRecipes={this.getSavedRecipes}
+          getSavedSearches={this.getSavedSearches}
           selectRecipe={this.selectRecipe}
           user={userName}
         />

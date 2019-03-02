@@ -43,6 +43,8 @@ const SearchItem = ({
   addIngredient,
   getRecipes,
   handleSearchClose,
+  searchedIngredients,
+  changeView,
 }) => {
   // const { classes } = this.props;
   return (
@@ -57,15 +59,22 @@ const SearchItem = ({
                 className={classes.card}
               >
                 {/* <CardActionArea> */}
-                  <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
+                <CardMedia
+                  className={classes.media}
+                  image="/static/images/cards/contemplative-reptile.jpg"
+                  title="Contemplative Reptile"
+                />
+                <CardContent>
+                  Search Ingredients
+                  <AutoComplete
+                    changeView={changeView}
+                    ingredients={ingredients}
+                    addIngredient={addIngredient}
+                    getRecipes={getRecipes}
+                    handleSearchClose={handleSearchClose}
+                    searchedIngredients={searchedIngredients}
                   />
-                  <CardContent>
-                    Search Ingredients
-                    <AutoComplete ingredients={ingredients} addIngredient={addIngredient} getRecipes={getRecipes} handleSearchClose={handleSearchClose} />
-                  </CardContent>
+                </CardContent>
                 {/* </CardActionArea> */}
                 <CardActions>
                   {/* <Button className="search" variant="outlined" color="primary" type="button" onClick={() => getRecipes(selectedIngredients.join(', '))}>Search</Button> */}

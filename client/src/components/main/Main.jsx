@@ -29,14 +29,15 @@ class Main extends React.Component {
 
   // function to change between views
   changeView(option) {
+    console.log(option, 'view changed');
     this.setState({
       view: option,
     });
   }
 
   render() {
-    const { selectedRecipe, selectRecipe, recipeOfTheDay, recipes, savedRecipes, 
-      ingredients, getRecipes, saveRecipe, saveDislikeRecipe, getSavedRecipes, user } = this.props;
+    const { selectedRecipe, selectRecipe, recipeOfTheDay, recipes, savedRecipes, savedSearches,
+      ingredients, getRecipes, saveRecipe, saveDislikeRecipe, getSavedRecipes, getSavedSearches, user } = this.props;
     const { view } = this.state;
 
     return (
@@ -77,6 +78,7 @@ class Main extends React.Component {
               ? 'nav-selected'
               : 'nav-unselected'}
             onClick={() => {
+              getSavedSearches();
               this.changeView('searchHistory');
             }}
           >
@@ -102,11 +104,16 @@ class Main extends React.Component {
                 selectRecipe={selectRecipe}
               />
             )
-              : view === 'saved' ? <SavedRecipes savedRecipes={savedRecipes} changeView={this.changeView} selectRecipe={selectRecipe}/>
+              : view === 'saved' ? <SavedRecipes 
+              savedRecipes={savedRecipes} 
+              changeView={this.changeView} 
+              selectRecipe={selectRecipe}
+              />
               : view === 'searchHistory' ? <SavedSearches
               changeView={this.changeView}
               ingredients={ingredients}
               getRecipes={getRecipes}
+              savedSearches={savedSearches}
               />
               :  <Recipe selectedRecipe={selectedRecipe} />
           }
