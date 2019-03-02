@@ -1,16 +1,16 @@
 // a drawer (with a saved recipes list component and a saved recipe list item component)
 import React from 'react';
-import SearchItem from './SearchItem.jsx';
+import SavedSearchItems from './SavedSearchItems.jsx';
 
-
-// const SavedSearches = ({ savedRecipes, changeView, selectRecipe }) => (
-const SavedSearches = () => {
+const SavedSearches = ({ ingredients, getRecipes }) => {
   return (
     <div className="saved-recipes-container">
-      <h1>Your Search History</h1>
+      <h2 className="Lobster">Your Search History</h2>
       <div>
-        SAVED SEARCH CARDS HERE
-        {/* <SearchItem ingredients={ingredients} addIngredient={this.addIngredient} getRecipes={getRecipes} /> */}
+        <SavedSearchItems
+          ingredients={ingredients}
+          getRecipes={getRecipes}
+        />
       </div>
     </div>
   );
