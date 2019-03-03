@@ -19,17 +19,73 @@ class SavedRecipes extends React.Component {
 
     ingredient.isChecked = !ingredient.isChecked;// toggles true/false
     console.log(ingredient);
-    
-    if (ingredient.isChecked) { // if ingredient has been checked add to grocery list
+
+    // if ingredient has been checked add to grocery list
+    if (ingredient.isChecked) {
+      // grab the current groceryList
+      const currentGroceryList = savedGroceryList.slice();
+
+      // add new ingredient to list
+      const newGroceryList = this.addIngredient(ingredient, currentGroceryList);
+
+      // set state to new grocery list
       this.setState({
-        savedGroceryList: savedGroceryList.concat([ingredient]),
+        savedGroceryList: newGroceryList,
       });
-    } else if (!ingredient.isChecked) { // if ingredient has not been checked remove from grocery list
+
+      // if ingredient has not been checked remove from grocery list
+    } else if (!ingredient.isChecked) {
+      const currentGroceryList = savedGroceryList.slice();
+
+      const newGroceryList = this.removeIngredient(ingredient, currentGroceryList);
+
       this.setState({
-        savedGroceryList: savedGroceryList.filter((grocery) => grocery.isChecked),
+        savedGroceryList: newGroceryList,
       });
-      console.log(savedGroceryList);
     }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  addIngredient(newIngredient, groceryList) {
+    let added = false;
+
+    let newList = groceryList.reduce((list, ingredient) => {
+      if (newIngredient.id === ingredient.id) {
+        const newIngre = JSON.parse(JSON.stringify(newIngredient));
+        newIngre.amount.us.amount = ingredient.amount.us.amount + newIngredient.amount.us.amount;
+        added = true;
+        list.push(newIngre);
+      } else {
+        list.push(ingredient);
+      }
+      return list;
+    }, []);
+
+    if (!added) {
+      newList = newList.concat([newIngredient]);
+    }
+
+    return newList;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  removeIngredient(deleteIngredient, groceryList) {
+
+    let newList = groceryList.reduce((list, ingredient) => {
+      if (deleteIngredient.id === ingredient.id) {
+        const newIngre = JSON.parse(JSON.stringify(deleteIngredient));
+        newIngre.amount.us.amount = ingredient.amount.us.amount - deleteIngredient.amount.us.amount;
+        if (newIngre.amount.us.amount > 0) {
+          newIngre.isChecked = true;
+        }
+        list.push(newIngre);
+      } else {
+        list.push(ingredient);
+      }
+      return list;
+    }, []);
+    newList = newList.filter(grocery => grocery.isChecked);
+    return newList;
   }
 
   render() {
@@ -48,9 +104,7 @@ class SavedRecipes extends React.Component {
             checked={checked}
           />
         </div>
-        <div>
-
-        </div>
+        <div />
       </div>
     );
   }
