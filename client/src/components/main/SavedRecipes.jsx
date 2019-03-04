@@ -12,6 +12,7 @@ class SavedRecipes extends React.Component {
       savedGroceryList: [],
     };
     this.onClick = this.onClick.bind(this);
+    this.printRecipe = this.printRecipe.bind(this);
   }
 
   onClick(ingredient) {
@@ -19,17 +20,89 @@ class SavedRecipes extends React.Component {
 
     ingredient.isChecked = !ingredient.isChecked;// toggles true/false
     console.log(ingredient);
-    
-    if (ingredient.isChecked) { // if ingredient has been checked add to grocery list
+
+    // if ingredient has been checked add to grocery list
+    if (ingredient.isChecked) {
+      // grab the current groceryList
+      const currentGroceryList = savedGroceryList.slice();
+
+      // add new ingredient to list
+      const newGroceryList = this.addIngredient(ingredient, currentGroceryList);
+
+      // set state to new grocery list
       this.setState({
-        savedGroceryList: savedGroceryList.concat([ingredient]),
+        savedGroceryList: newGroceryList,
       });
-    } else if (!ingredient.isChecked) { // if ingredient has not been checked remove from grocery list
+
+      // if ingredient has not been checked remove from grocery list
+    } else if (!ingredient.isChecked) {
+      const currentGroceryList = savedGroceryList.slice();
+
+      const newGroceryList = this.removeIngredient(ingredient, currentGroceryList);
+
       this.setState({
-        savedGroceryList: savedGroceryList.filter((grocery) => grocery.isChecked),
+        savedGroceryList: newGroceryList,
       });
-      console.log(savedGroceryList);
     }
+  }
+
+  printRecipe() {
+    const { savedGroceryList } = this.state;
+
+    let IngredientList = '';
+
+    savedGroceryList.forEach((ingredient) => {
+      IngredientList += `[] ${ingredient.amount.us.amount} ${ingredient.amount.us.unitLong} ${ingredient.name} <br>`;
+    });
+    const myWindow = window.open('', '', 'width=200,height=100');
+    myWindow.document.write(`<p> My Grocery List: <br> ${IngredientList}</p>`);
+
+    myWindow.document.close();
+    myWindow.focus();
+    myWindow.print();
+    myWindow.close();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  addIngredient(newIngredient, groceryList) {
+    let added = false;
+
+    let newList = groceryList.reduce((list, ingredient) => {
+      if (newIngredient.id === ingredient.id) {
+        const newIngre = JSON.parse(JSON.stringify(newIngredient));
+        newIngre.amount.us.amount = ingredient.amount.us.amount + newIngredient.amount.us.amount;
+        added = true;
+        list.push(newIngre);
+      } else {
+        list.push(ingredient);
+      }
+      return list;
+    }, []);
+
+    if (!added) {
+      newList = newList.concat([newIngredient]);
+    }
+
+    return newList;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  removeIngredient(deleteIngredient, groceryList) {
+    let newList = groceryList.reduce((list, ingredient) => {
+      if (deleteIngredient.id === ingredient.id) {
+        const newIngre = JSON.parse(JSON.stringify(deleteIngredient));
+        newIngre.amount.us.amount = ingredient.amount.us.amount - deleteIngredient.amount.us.amount;
+        if (newIngre.amount.us.amount > 0) {
+          newIngre.isChecked = true;
+        }
+        list.push(newIngre);
+      } else {
+        list.push(ingredient);
+      }
+      return list;
+    }, []);
+    newList = newList.filter(grocery => grocery.isChecked);
+    return newList;
   }
 
   render() {
@@ -39,6 +112,7 @@ class SavedRecipes extends React.Component {
       <div className="saved-recipes-container">
         <div className="Lobster"><h2>Your saved recipes</h2></div>
         <div>
+          <GroceryList onClick={this.printRecipe} savedGroceryList={savedGroceryList} />
           <SavedRecipesList
             onClick={this.onClick}
             savedRecipes={savedRecipes}
@@ -47,10 +121,7 @@ class SavedRecipes extends React.Component {
             checked={checked}
           />
         </div>
-        <div>
-          <GroceryList savedGroceryList={savedGroceryList} />
-
-        </div>
+        <div />
       </div>
     );
   }
