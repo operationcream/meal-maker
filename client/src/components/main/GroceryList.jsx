@@ -17,7 +17,7 @@ const styles = {
 
 };
 
-const GroceryList = ({ savedGroceryList, classes }) => (
+const GroceryList = ({ savedGroceryList, classes, onClick }) => (
 
   <Card className={classes.card}>
     <CardContent>
@@ -31,8 +31,8 @@ const GroceryList = ({ savedGroceryList, classes }) => (
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small" color="primary">
-        Create Grocery List
+      <Button onClick={() => { onClick(); }} size="small" color="primary">
+        Print Grocery List
       </Button>
     </CardActions>
   </Card>

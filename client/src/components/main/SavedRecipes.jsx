@@ -12,6 +12,7 @@ class SavedRecipes extends React.Component {
       savedGroceryList: [],
     };
     this.onClick = this.onClick.bind(this);
+    this.printRecipe = this.printRecipe.bind(this);
   }
 
   onClick(ingredient) {
@@ -45,6 +46,23 @@ class SavedRecipes extends React.Component {
     }
   }
 
+  printRecipe() {
+    const { savedGroceryList } = this.state;
+
+    let IngredientList = '';
+
+    savedGroceryList.forEach((ingredient) => {
+      IngredientList += `[] ${ingredient.amount.us.amount} ${ingredient.amount.us.unitLong} ${ingredient.name} <br>`;
+    });
+    const myWindow = window.open('', '', 'width=200,height=100');
+    myWindow.document.write(`<p> My Grocery List: <br> ${IngredientList}</p>`);
+
+    myWindow.document.close();
+    myWindow.focus();
+    myWindow.print();
+    myWindow.close();
+  }
+
   // eslint-disable-next-line class-methods-use-this
   addIngredient(newIngredient, groceryList) {
     let added = false;
@@ -70,7 +88,6 @@ class SavedRecipes extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   removeIngredient(deleteIngredient, groceryList) {
-
     let newList = groceryList.reduce((list, ingredient) => {
       if (deleteIngredient.id === ingredient.id) {
         const newIngre = JSON.parse(JSON.stringify(deleteIngredient));
@@ -95,7 +112,7 @@ class SavedRecipes extends React.Component {
       <div className="saved-recipes-container">
         <div className="Lobster"><h2>Your saved recipes</h2></div>
         <div>
-          <GroceryList savedGroceryList={savedGroceryList} />
+          <GroceryList onClick={this.printRecipe} savedGroceryList={savedGroceryList} />
           <SavedRecipesList
             onClick={this.onClick}
             savedRecipes={savedRecipes}
